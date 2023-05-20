@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body, html {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        transition: background-image 1s;
+        background-color: black;
+      }
+      .bg1, .bg2 {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        transition: opacity 1s;
+      }
+      .bg1 {
+        opacity: 1;
+        z-index: 2;
+      }
+      .bg2 {
+        opacity: 0;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg1"></div>
+    <div class="bg2"></div>
+    <script>
+      var bg1 = document.querySelector('.bg1');
+      var bg2 = document.querySelector('.bg2');
+      var currentBg = bg1;
+      var socket = new WebSocket('ws://localhost:3000/ws');
+      socket.onmessage = function(event) {
+        var artworkUrl = event.data;
+        var nextBg = currentBg === bg1 ? bg2 : bg1;
+        nextBg.style.backgroundImage = 'url(' + artworkUrl + ')';
+        currentBg.style.opacity = '0';
+        nextBg.style.opacity = '1';
+        currentBg = nextBg;
+      };
+    </script>
+  </body>
+</html>
