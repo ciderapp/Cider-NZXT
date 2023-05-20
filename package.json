@@ -1,0 +1,17 @@
+{
+  "name": "cider-nzxt",
+  "version": "1.0.0",
+  "description": "An extremely simple Node.js app using Express 4 to control NZXT Kraken Z/Elite coolers with information from Cider.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ."
+  },
+  "author": "cryptofyre",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "express": "^4.18.2",
+    "http": "^0.0.1-security",
+    "node-fetch": "^3.3.1",
+    "socket.io": "^4.6.1"
+  }
+}
